@@ -1,21 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+:root {
+    --slider-card-width: 300px;
+    --slider-card-height: 400px;
+    --slider-depth: 300px;
+    --slider-visible-height: 350px;
+}
+
 body{
     margin: 0;
     padding: 0;
     background: linear-gradient(90deg, rgb(203, 243, 243) 0%, rgb(203, 225, 244) 50%, rgb(194, 178, 178) 100%);
+    overflow-x: hidden;
 }
 
 .tarjeta{
-    width: 300px;
-    height: 400px;
+    width: var(--slider-card-width);
+    height: var(--slider-card-height);
     border-radius: 20px;
     border: 2px solid grey;
 }
 
 .tarjeta .contenido{
     padding: 0 40px 40px 40px;
-    margin-top: -20px;;
+    margin-top: -20px;
+    overflow-y: auto;
 }
 
 .node{
@@ -71,8 +80,7 @@ a{
 .content h1{
     font-family: "Oswald";
     font-weight: bold;
-    font-size: 200px; 
-    /* Ajusta o elimina este margen inferior negativo que interfiere con 'bottom' */
+    font-size: clamp(60px, 15vw, 200px);
     margin-bottom: 0; 
     position: relative;
     left: 50%;
@@ -125,10 +133,10 @@ a{
 
 .banner .slider{
     position: absolute;
-    width: 300px;
-    height: 350px;
+    width: var(--slider-card-width);
+    height: var(--slider-visible-height);
     top: 10%;
-    left: calc(50% - 150px);
+    left: calc(50% - var(--slider-card-width) / 2);
     transform-style: preserve-3d;
     transform: perspective(1000px);
     z-index: 3;
@@ -148,7 +156,7 @@ a{
     position:absolute;
     transform: 
         rotateY(calc( ( var(--position) -  1 ) * ( 360 / var(--quantity) ) * 1deg ) )
-        translateZ(300px);
+        translateZ(var(--slider-depth));
 }
 
 .banner .slider:hover{
@@ -290,4 +298,155 @@ a{
 .code-viewer-inner code {
     font-family: inherit; /* Hereda la fuente del <pre> */
     white-space: inherit;
+}
+
+/* Media Queries para Responsividad */
+
+@media (max-width: 1024px) {
+    :root {
+        --slider-card-width: 260px;
+        --slider-card-height: 360px;
+        --slider-depth: 260px;
+        --slider-visible-height: 310px;
+    }
+
+    .content h1 {
+        /* font-size: 150px; Ya gestionado por clamp() */
+    }
+
+    .content h1::before {
+        height: 400px;
+    }
+
+    .tarjeta .contenido {
+        padding: 0 30px 30px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --slider-card-width: 220px;
+        --slider-card-height: 320px;
+        --slider-depth: 220px;
+        --slider-visible-height: 270px;
+    }
+
+    .content h1 {
+        /* font-size: 100px; Ya gestionado por clamp() */
+        bottom: 100px; /* Ajustar si es necesario */
+    }
+
+    .content h1::before {
+        height: 300px;
+    }
+
+    .tarjeta .contenido {
+        padding: 0 20px 20px 20px;
+    }
+    .tarjeta h2 {
+        font-size: 1.3em;
+    }
+    .tarjeta p {
+        font-size: 0.9em;
+    }
+
+    .code-info-header {
+        padding: 6px 10px;
+        left: 10px;
+        top: 10px;
+    }
+    .code-info-text, .code-info-links a.toggle-code-link {
+        font-size: 11px;
+    }
+
+    .social-footer {
+        padding: 0 10px;
+        bottom: 5px;
+    }
+    .social-links-left a img, .adapted-from-link a img {
+        width: 20px;
+        height: 20px;
+    }
+    .adapted-from-link {
+        font-size: 11px;
+    }
+
+    .code-viewer-inner {
+        width: 90%;
+        padding: 20px;
+    }
+    .code-viewer-inner h3 {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --slider-card-width: 200px;
+        --slider-card-height: 300px; /* O considerar height: auto y ajustar contenido */
+        --slider-depth: 180px;
+        --slider-visible-height: 250px;
+        /* Podrías usar vw para el ancho de la tarjeta: calc(100vw - 80px) y max-width */
+    }
+
+    .content h1 {
+        /* font-size: 60px; Ya gestionado por clamp() */
+        bottom: 50px; /* Ajustar si es necesario */
+    }
+
+    .content h1::before {
+        height: 250px;
+    }
+
+    .tarjeta .contenido {
+        padding: 0 15px 15px 15px; /* Reducir padding */
+    }
+    .tarjeta h2 {
+        font-size: 1.2em; /* Mantener legible */
+        line-height: 1.2;
+    }
+    .tarjeta p {
+        font-size: 0.8em;
+    }
+
+    .code-info-header {
+        position: relative; /* Para que no se solape tanto en pantallas muy pequeñas */
+        top: 0;
+        left: 0;
+        width: calc(100% - 20px);
+        margin: 10px auto;
+        text-align: center;
+    }
+    .code-info-text, .code-info-links a {
+        font-size: 10px;
+    }
+
+    .social-footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        bottom: 5px;
+    }
+    .social-links-left {
+        margin-bottom: 5px;
+    }
+    .social-links-left a img, .adapted-from-link a img {
+        margin: 0 4px; /* Menos margen horizontal */
+    }
+
+    .code-viewer-inner {
+        width: 95%;
+        padding: 20px;
+        max-height: 85vh;
+    }
+    .code-viewer-inner h3 {
+        font-size: 1.1em;
+    }
+    .close-viewer-button {
+        font-size: 1.5em;
+    }
+    .code-viewer-inner pre {
+        font-size: 0.75em;
+        padding: 10px;
+    }
 }
