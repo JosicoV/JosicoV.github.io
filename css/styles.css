@@ -93,7 +93,7 @@ a{
     transform: translateY(-50%);
     height: 500px; /* Altura deseada para la imagen, similar al anterior .model */
     
-    background-image: url('/media/img/foto-transparente.png');
+    background-image: url('../media/img/foto-transparente.png'); /* Ajustado para ser relativo al CSS */
     background-size:contain;
     background-position: center; /* Centra la imagen dentro del pseudo-elemento */
     background-repeat: no-repeat;
