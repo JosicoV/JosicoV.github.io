@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(90deg, rgb(203, 243, 243) 0%, rgb(203, 225, 244) 50%, rgb(194, 178, 178) 100%);
+}
+
+.tarjeta{
+    width: 300px;
+    height: 400px;
+    border-radius: 20px;
+    border: 2px solid grey;
+}
+
+.tarjeta .contenido{
+    padding: 0 40px 40px 40px;
+    margin-top: -20px;;
+}
+
+.node{
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(131, 205, 41, 0.3);
+}
+
+.python{
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(61,122,171, 0.3);
+}
+
+.jves{
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(72,72,170, 0.3);
+}
+
+.jvcom{
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(222,152,130, 0.3);
+}
+
+.tarjeta img{
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+}
+
+.tarjeta  p{
+    font-family: "Roboto";
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.tarjeta h2{
+    font-family: "Oswald";
+}
+
+.content{
+    position:absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 150px; /* Posiciona el .content para que h1::before quede al borde inferior */
+    width: 100%;
+}
+
+.content h1{
+    font-family: "Oswald";
+    font-weight: bold;
+    font-size: 200px; 
+    /* Ajusta o elimina este margen inferior negativo que interfiere con 'bottom' */
+    margin-bottom: 0; 
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    color:rgb(2, 15, 42);
+    line-height: 1em;
+    width: 100%;
+    text-align: center;
+    z-index: 0;
+}
+
+.content h1::before{
+    content: ""; /* Necesario para que el pseudo-elemento se genere */
+    position: absolute;
+    left: 0; /* Ocupa el ancho del h1 */
+    right: 0;
+    top: 50%; /* Centra verticalmente el pseudo-elemento respecto al h1 */
+    transform: translateY(-50%);
+    height: 500px; /* Altura deseada para la imagen, similar al anterior .model */
+    
+    background-image: url('/media/img/foto-transparente.png');
+    background-size:contain;
+    background-position: center; /* Centra la imagen dentro del pseudo-elemento */
+    background-repeat: no-repeat;
+    z-index: 0; /* Detrás del texto del h1, pero encima del fondo del h1 (si lo tuviera) */
+}
+
+
+.content h1::after{
+    position: absolute;
+    content: attr(data-content);
+    inset:0 0 0 0;
+    z-index: 2;
+    -webkit-text-stroke: 2px rgb(217, 217, 217);
+    color: transparent;
+}
+
+.content h1 a{
+    color:rgb(2, 15, 42);
+}
+
+/** Magia **/
+.banner{
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.banner .slider{
+    position: absolute;
+    width: 300px;
+    height: 350px;
+    top: 10%;
+    left: calc(50% - 150px);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    z-index: 3;
+    animation: autoRun 30s linear infinite;
+}
+
+@keyframes autoRun{
+    from{
+        transform: perspective(1000px) rotateX(-17deg) rotateY(0deg);
+    }
+    to{
+        transform: perspective(1000px) rotateX(-17deg) rotateY(360deg)
+    }
+}
+
+.banner .slider .item{
+    position:absolute;
+    transform: 
+        rotateY(calc( ( var(--position) -  1 ) * ( 360 / var(--quantity) ) * 1deg ) )
+        translateZ(300px);
+}
+
+.banner .slider:hover{
+    animation-play-state: paused;
+}
+
+/** Code Info Header **/
+.code-info-header {
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    z-index: 15; /* Por encima de otros elementos fijos */
+    background-color: rgba(255, 255, 255, 0.85); /* Fondo para mejor legibilidad */
+    padding: 8px 12px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.code-info-text {
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+    color: #333;
+    margin: 0 0 5px 0; /* Espacio debajo del texto */
+}
+.code-info-links a.toggle-code-link {
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+    color: #0056b3; /* Un color de enlace un poco más oscuro */
+    margin-right: 10px;
+}
+.code-info-links a.close-code-link {
+    margin-left: 5px; /* Espacio extra antes del botón general de cerrar */
+}
+
+/** Footer Social Links **/
+.social-footer {
+    position: fixed; /* Se fija al viewport */
+    bottom: 10px;    /* Un pequeño margen desde abajo */
+    left: 0;
+    width: 100%;
+    padding: 0 20px; /* Espaciado a los lados */
+    display: flex;
+    justify-content: space-between; /* Separa los elementos a izquierda y derecha */
+    align-items: center;
+    box-sizing: border-box; /* Para que el padding no afecte el width total */
+    z-index: 10; /* Asegura que esté por encima de otros elementos si es necesario */
+}
+
+.social-links-left a img,
+.adapted-from-link a img {
+    width: 24px;  /* Tamaño pequeño para los iconos */
+    height: 24px;
+    margin-right: 8px; /* Espacio entre iconos de la izquierda */
+    vertical-align: middle; /* Alinea bien con el texto */
+}
+
+.adapted-from-link {
+    display: flex;
+    align-items: center; /* Alinea el texto y el icono verticalmente */
+    font-family: "Roboto", sans-serif;
+    font-size: 12px; /* Tamaño pequeño para el texto */
+    color: #333; /* Un color de texto legible */
+}
+
+.adapted-from-link span {
+    margin-right: 5px; /* Espacio entre el texto "adaptado de" y el icono */
+}
+
+/** Code Viewer Styles **/
+.code-viewer-content {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Overlay que cubre toda la pantalla */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6); /* Fondo oscuro semi-transparente */
+    z-index: 100; /* Por encima de todo lo demás */
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Para permitir scroll si el modal es más grande que la ventana */
+}
+
+.code-viewer-content:target {
+    display: flex; /* Se muestra cuando el ID es el target de la URL */
+    align-items: center; /* Centra verticalmente el contenido interno */
+    justify-content: center; /* Centra horizontalmente el contenido interno */
+}
+
+.code-viewer-inner {
+    background-color: #fdfdfd;
+    padding: 25px;
+    border-radius: 8px;
+    width: 85%;
+    max-width: 950px;
+    max-height: 90vh; /* Altura máxima, el resto con scroll interno */
+    display: flex;
+    flex-direction: column; /* Para que el pre ocupe el espacio vertical */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+.code-viewer-inner h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-family: "Oswald", sans-serif;
+    color: #2c3e50;
+    display: flex;
+    justify-content: space-between; /* Para poner el botón de cerrar a la derecha */
+    align-items: center;
+}
+
+.close-viewer-button {
+    font-size: 1.8em;
+    line-height: 1;
+    color: #7f8c8d;
+    text-decoration: none;
+    font-weight: bold;
+}
+.close-viewer-button:hover {
+    color: #34495e;
+}
+
+.code-viewer-inner pre {
+    flex-grow: 1; /* El <pre> ocupa el espacio vertical restante */
+    overflow: auto; /* Scroll para el contenido del código si es muy largo */
+    background-color: #282c34; /* Un fondo oscuro común para código */
+    color: #abb2bf;     /* Un color de texto claro que contrasta bien */
+    padding: 20px;
+    border-radius: 5px;
+    margin: 0;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-size: 0.85em; /* Ajusta el tamaño de la fuente del código */
+    white-space: pre;    /* Mantiene los espacios y saltos de línea */
+    line-height: 1.5;
+}
+
+.code-viewer-inner code {
+    font-family: inherit; /* Hereda la fuente del <pre> */
+    white-space: inherit;
+}
