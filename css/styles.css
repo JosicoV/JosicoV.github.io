@@ -169,6 +169,33 @@ a{
     animation-play-state: paused;
 }
 
+/** User Me Info (Top Right) **/
+#user-me-info {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    z-index: 15; /* Igual que .code-info-header para mantener consistencia si no se solapan */
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 8px 12px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    font-family: "Roboto", sans-serif;
+    font-size: 11px;
+    color: #333;
+    text-align: right; /* Para alinear el texto interno a la derecha */
+}
+
+#user-me-info div {
+    margin-bottom: 3px;
+}
+#user-me-info div:last-child {
+    margin-bottom: 0;
+}
+
+#user-me-info .weather-icon {
+    display: inline-block;
+    margin: 0 3px;
+}
 /** Code Info Header **/
 .code-info-header {
     position: fixed;
@@ -422,6 +449,11 @@ a{
         width: calc(100% - 20px);
         margin: 10px auto;
         text-align: center;
+    }
+    #user-me-info {
+        top: 60px; /* Ajustado para que esté debajo del .code-info-header */
+        right: 10px; /* Alineado con el margen del .code-info-header centrado */
+        font-size: 10px; /* Para consistencia con otros textos pequeños en móvil */
     }
     .code-info-text, .code-info-links a {
         font-size: 10px;

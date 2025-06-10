@@ -7,11 +7,25 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <div id="user-me-info">
+        <div>
+            <span>Me: </span>
+            <span class="weather-icon" id="my-weather-icon">☀️</span> <!-- Icono placeholder -->
+            <span id="my-local-time">--:--:--</span>
+        </div>
+        <div>
+            <span>You: </span>
+            <span class="weather-icon" id="user-weather-icon">🌦️</span> <!-- Icono placeholder -->
+            <span id="user-local-time">--:--:--</span>
+        </div>
+    </div>
+
     <div class="code-info-header">
-        <p class="code-info-text">Solo con HTML y CSS. Ver código:</p>
+        <p class="code-info-text">Hecho con HTML, CSS y JS. Ver código:</p>
         <div class="code-info-links">
             <a href="#html-code-view" class="toggle-code-link">index.html</a>
             <a href="#css-code-view" class="toggle-code-link">styles.css</a>
+            <a href="#js-code-view" class="toggle-code-link">main.js</a>
         </div>
     </div>
 
@@ -33,7 +47,7 @@
                     <div class="contenido">
                         <h2>Curso de Python desde Cero</h2>
                         <span class="url"><code><a href="https://github.com/JosicoV/Curso-Python-desde-Cero" target="_blank">Repo público en GitHub</a></code></span><br>
-                        <p>Curso que estoy siguiendo para aprender y profundizar en el Lenguaje de Programación Python. Esturcturado por semanas y con ejercicios prácticos.</p>
+                        <p>Curso que estoy siguiendo para aprender y profundizar en el Lenguaje de Programación Python. Estructurado por semanas y con ejercicios.</p>
                     </div>
                 </div>
             </div>
@@ -63,7 +77,7 @@
                     <div class="contenido">
                         <h2>Esta misma página</h2>
                         <span class="url"><code><a href="https://github.com/JosicoV/JosicoV.github.io" target="_blank">Repo público en GitHub</a></code></span><br>
-                        <p>Página única de presentación de mis proyectos. Programada solo con HTML y CSS. Trabajando en el responsive design.</p>
+                        <p>Página única de presentación de mis proyectos. Programada solo con HTML y CSS (y un poquito de JS, he caido al final). Trabajando en el responsive design.</p>
                     </div>
                 </div>
             </div>
@@ -660,5 +674,14 @@ a{
             </code></pre>
         </div>
     </div>
+        <!-- Visor para el código JS -->
+    <div id="js-code-view" class="code-viewer-content">
+        <div class="code-viewer-inner">
+            <h3>Contenido de main.js <a href="#" class="close-viewer-button" title="Cerrar">×</a></h3>
+            <pre><code class="language-javascript">
+            </code></pre>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
 </body>
 </html>
