@@ -51,6 +51,12 @@ body{
     background: rgba(222,152,130, 0.3);
 }
 
+.jvgithub{
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(2,15,42, 0.3);
+}
+
 .tarjeta img{
     width: 100%;
     border-radius: 20px 20px 0 0;
